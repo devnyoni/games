@@ -3,75 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clover Game Hub | Cheza Bure</title>
+    <title>Clover Game Hub | Uhakika</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background: #0f172a; color: white; font-family: 'Segoe UI', sans-serif; }
-        .game-card:hover { transform: translateY(-10px); transition: 0.3s; border-color: #3b82f6; }
+        body { background: #0f172a; color: white; overflow-x: hidden; }
         .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); }
+        iframe { border: none; width: 100%; height: 100%; }
     </style>
 </head>
 <body class="min-h-screen">
 
-    <nav class="p-6 glass border-b border-gray-700 flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-blue-500"><i class="fas fa-gamepad"></i> CLOVER GAMES</h1>
-        <div class="space-x-4">
-            <span class="text-gray-400">Online: 1,240</span>
-        </div>
+    <nav class="p-6 glass border-b border-gray-700 flex justify-between">
+        <h1 class="text-2xl font-bold text-blue-500">🎮 CLOVER GAMES</h1>
     </nav>
 
-    <header class="container mx-auto py-12 text-center">
-        <h2 class="text-5xl font-extrabold mb-4">Cheza Games Online Bila Kudownload</h2>
-        <p class="text-gray-400 text-xl">Chagua mchezo unaoupenda hapa chini kuanza sasa.</p>
-    </header>
-
-    <main class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 pb-20">
+    <div class="container mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-2 gap-8">
         
-        <div class="game-card glass p-4 rounded-2xl border border-gray-800 text-center">
-            <img src="https://play-lh.googleusercontent.com/97S9_6S_4A7f1-Rk6jY5h8vI3L2yq5V8fFmY4vG" alt="2048" class="w-full h-48 object-cover rounded-xl mb-4">
-            <h3 class="text-2xl font-bold mb-2">2048 Classic</h3>
-            <p class="text-gray-400 mb-4">Unganisha namba mpaka ufike 2048!</p>
-            <button onclick="playGame('https://play2048.co/')" class="bg-blue-600 hover:bg-blue-700 w-full py-3 rounded-lg font-bold">CHEZA SASA</button>
+        <div class="glass p-6 rounded-2xl border border-gray-800">
+            <h3 class="text-xl font-bold mb-4 text-center">2048 Puzzle</h3>
+            <div class="h-96 rounded-xl overflow-hidden bg-white">
+                <iframe src="https://play2048.co/"></iframe>
+            </div>
+            <p class="mt-4 text-sm text-gray-400 text-center">Tumia mishale (Arrows) kucheza.</p>
         </div>
 
-        <div class="game-card glass p-4 rounded-2xl border border-gray-800 text-center">
-            <img src="https://play-lh.googleusercontent.com/9b_I_V_OaV1Z1Z" alt="Snake" class="w-full h-48 object-cover rounded-xl mb-4">
-            <h3 class="text-2xl font-bold mb-2">Snake Game</h3>
-            <p class="text-gray-400 mb-4">Mchezo wa nyoka wa kizamani lakini mtamu.</p>
-            <button onclick="playGame('https://www.google.com/logos/2010/pacman10-i.html')" class="bg-green-600 hover:bg-green-700 w-full py-3 rounded-lg font-bold">CHEZA SASA</button>
+        <div class="glass p-6 rounded-2xl border border-gray-800">
+            <h3 class="text-xl font-bold mb-4 text-center">Hextris</h3>
+            <div class="h-96 rounded-xl overflow-hidden">
+                <iframe src="https://hextris.io/"></iframe>
+            </div>
+            <p class="mt-4 text-sm text-gray-400 text-center">Zungusha hexagon kuzuia blocks.</p>
         </div>
 
-        <div class="game-card glass p-4 rounded-2xl border border-gray-800 text-center">
-            <img src="https://tetris.com/img/og-logo.png" alt="Tetris" class="w-full h-48 object-cover rounded-xl mb-4">
-            <h3 class="text-2xl font-bold mb-2">Tetris Mania</h3>
-            <p class="text-gray-400 mb-4">Panga blocks vizuri usijaze kioo.</p>
-            <button onclick="playGame('https://tetris.com/play-tetris')" class="bg-purple-600 hover:bg-purple-700 w-full py-3 rounded-lg font-bold">CHEZA SASA</button>
-        </div>
-
-    </main>
-
-    <div id="game-modal" class="fixed inset-0 bg-black bg-opacity-95 hidden flex-col">
-        <div class="p-4 flex justify-between bg-gray-900">
-            <h3 id="game-title" class="font-bold">Inacheza...</h3>
-            <button onclick="closeGame()" class="text-red-500 font-bold text-xl">&times; FUNGA GAME</button>
-        </div>
-        <iframe id="game-frame" src="" class="w-full h-full border-none"></iframe>
     </div>
 
-    <script>
-        function playGame(url) {
-            document.getElementById('game-frame').src = url;
-            document.getElementById('game-modal').classList.remove('hidden');
-            document.getElementById('game-modal').classList.add('flex');
-        }
+    <footer class="text-center py-10 text-gray-500">
+        <p>© 2026 Clover Game Hub - Deploy on Vercel</p>
+    </footer>
 
-        function closeGame() {
-            document.getElementById('game-modal').classList.add('hidden');
-            document.getElementById('game-modal').classList.remove('flex');
-            document.getElementById('game-frame').src = "";
-        }
-    </script>
 </body>
 </html>
-  
