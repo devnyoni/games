@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAHEEM-XMD DEPLOYER</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white flex items-center justify-center min-h-screen">
+    <div class="bg-gray-900 p-8 rounded-2xl border border-blue-500 shadow-2xl w-full max-w-md">
+        <h1 class="text-2xl font-black mb-2 text-center text-blue-500 italic">RAHEEM-XMD</h1>
+        <p class="text-gray-400 text-center text-xs mb-6">Deploy bot yako kwa urahisi bila terminal</p>
+        
+        <div class="space-y-4">
+            <div>
+                <label class="block text-xs font-semibold uppercase text-blue-300">Render API Key</label>
+                <input type="password" id="apiKey" placeholder="rnd_xxxxxxxxx" class="w-full p-3 mt-1 rounded bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+            </div>
+            
+            <div>
+                <label class="block text-xs font-semibold uppercase text-blue-300">Session ID</label>
+                <input type="text" id="sessionId" placeholder="RAHEEM-XMD~uAVl..." class="w-full p-3 mt-1 rounded bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-blue-500 outline-none text-sm text-green-400">
+            </div>
+
+            <div>
+                <label class="block text-xs font-semibold uppercase text-blue-300">Service ID</label>
+                <input type="text" id="serviceId" placeholder="srv-xxxxxxxx" class="w-full p-3 mt-1 rounded bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+            </div>
+
+            <button onclick="startDeploy()" id="btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition-all transform active:scale-95 shadow-lg">ANZA KU-DEPLOY 🚀</button>
+        </div>
+        
+        <div id="status" class="mt-6 p-3 rounded hidden text-center text-sm font-medium"></div>
+    </div>
+
+    <script>
+        async function startDeploy() {
+            const btn = document.getElementById('btn');
+            const status = document.getElementById('status');
+            
+            const data = {
+                apiKey: document.getElementById('apiKey').value,
+                sessionId: document.getElementById('sessionId').value,
+                serviceId: document.getElementById('serviceId').value
+            };
+
+            if(!data.apiKey || !data.sessionId || !data.serviceId) return alert("Jaza kila kitu!");
+
+            btn.disabled = true;
+            btn.innerHTML = "INATUMA...";
+            status.classList.remove('hidden', 'bg-red-500/20', 'bg-green-500/20');
+            status.innerHTML = "Subiri kidogo...";
+
+            try {
+                const res = await fetch('/deploy', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+                
+                status.classList.add('bg-blue-500/20', 'text-blue-400');
+                status.innerText = result.message;
+            } catch (err) {
+                status.classList.add('bg-red-500/20', 'text-red-400');
+                status.innerText = "Error: Imeshindikana kuunganisha server.";
+            }
+            btn.disabled = false;
+            btn.innerHTML = "ANZA KU-DEPLOY 🚀";
+        }
+    </script>
+</body>
+</html>
